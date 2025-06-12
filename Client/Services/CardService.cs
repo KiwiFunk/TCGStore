@@ -12,8 +12,10 @@ namespace Client.Services
             _httpClient = httpClient;
         }
 
+        // GET request to fetch the list of cards from API
         public async Task<List<Card>> GetCardsAsync()
         {
+            // Use null-coalescing operator (??) to return an empty list if the response is null
             return await _httpClient.GetFromJsonAsync<List<Card>>("api/cards") ?? new List<Card>();
         }
     }
