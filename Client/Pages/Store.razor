@@ -3,21 +3,32 @@
 
 <h3>TCG Store</h3>
 
-@if (cards == null)
+@if (cards == null || products == null)
 {
-    <p>Loading cards...</p>
+    <p>Loading items...</p>
 }
 else
 {
-    <div class="card-grid">
+    <div class="store-grid">
         @foreach (var card in cards)
         {
-            <div class="card">
+            <div class="store-item">
                 <img src="@card.ImageUrl" alt="@card.Name" />
                 <h4>@card.Name</h4>
                 <p>@card.Type - @card.Rarity</p>
                 <strong>£@card.Price</strong>
-                <button @onclick="() => AddToCart(card)">Add to Cart</button>
+                <button @onclick="() => AddToCart(card.Name)">Add to Cart</button>
+            </div>
+        }
+
+        @foreach (var product in products)
+        {
+            <div class="store-item">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+                <h4>@product.Name</h4>
+                <p>@product.Description</p>
+                <strong>£@product.Price</strong>
+                <button @onclick="() => AddToCart(product.Name)">Add to Cart</button>
             </div>
         }
     </div>
@@ -25,15 +36,16 @@ else
 
 @code {
     private List<Card>? cards;
+    private List<Product>? products;
 
     protected override async Task OnInitializedAsync()
     {
         cards = await Http.GetFromJsonAsync<List<Card>>("api/cards");
+        products = await Http.GetFromJsonAsync<List<Product>>("api/products");
     }
 
-    private void AddToCart(Card card)
+    private void AddToCart(string itemName)
     {
-        // Placeholder logic
-        Console.WriteLine($"Added {card.Name} to cart!");
+        Console.WriteLine($"Added {itemName} to cart!");
     }
 }
