@@ -17,3 +17,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+// Start the server
+app.Run();
+Console.WriteLine("Server is running...");
