@@ -1,5 +1,9 @@
 @page "/store"
-@inject HttpClient Http
+
+@using Client.Services
+@inject CardService CardService
+@inject ProductService ProductService
+
 
 <h3>TCG Store</h3>
 
@@ -40,8 +44,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        cards = await Http.GetFromJsonAsync<List<Card>>("api/cards");
-        products = await Http.GetFromJsonAsync<List<Product>>("api/products");
+        cards = await CardService.GetCardsAsync(); // Using CardService
+        products = await ProductService.GetProductsAsync(); // Using ProductService
     }
 
     private void AddToCart(string itemName)

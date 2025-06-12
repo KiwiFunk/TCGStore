@@ -13,6 +13,8 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5271/") // Localhost URL for the server
 });
 
+//Register services for dependency injection
 builder.Services.AddScoped<CardService>();
+builder.Services.AddScoped<ProductService>();
 
 await builder.Build().RunAsync();
