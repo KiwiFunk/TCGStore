@@ -1,0 +1,39 @@
+@page "/store"
+@inject HttpClient Http
+
+<h3>TCG Store</h3>
+
+@if (cards == null)
+{
+    <p>Loading cards...</p>
+}
+else
+{
+    <div class="card-grid">
+        @foreach (var card in cards)
+        {
+            <div class="card">
+                <img src="@card.ImageUrl" alt="@card.Name" />
+                <h4>@card.Name</h4>
+                <p>@card.Type - @card.Rarity</p>
+                <strong>£@card.Price</strong>
+                <button @onclick="() => AddToCart(card)">Add to Cart</button>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Card>? cards;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cards = await Http.GetFromJsonAsync<List<Card>>("api/cards");
+    }
+
+    private void AddToCart(Card card)
+    {
+        // Placeholder logic
+        Console.WriteLine($"Added {card.Name} to cart!");
+    }
+}
