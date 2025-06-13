@@ -10,7 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 // Blazor uses HttpClient to interact with the APIs
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5271/") // Localhost URL for the server
+    BaseAddress = new Uri("https://localhost:7237/") // Localhost URL for the server
 });
 
 //Register services for dependency injection
