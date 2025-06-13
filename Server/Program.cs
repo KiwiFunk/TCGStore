@@ -5,16 +5,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS
+// CORS configuration
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
         policy.WithOrigins(
-                "https://localhost:5128", 
-                "http://localhost:5128",
-                "https://localhost:5271", 
-                "http://localhost:5271"
+                "https://localhost:7214",   // Client HTTPS port
+                "http://localhost:5128",    // Client HTTP port (fallback)
+                "https://localhost:7237",   // Server HTTPS port
+                "http://localhost:5271"     // Server HTTP port (fallback)
               )
               .AllowAnyHeader()
               .AllowAnyMethod();
