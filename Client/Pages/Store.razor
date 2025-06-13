@@ -1,42 +1,63 @@
 @page "/store"
-
 @using Client.Services
 @inject CardService CardService
 @inject ProductService ProductService
 
-
-<h3>TCG Store</h3>
-
-@if (cards == null || products == null)
-{
-    <p>Loading items...</p>
-}
-else
-{
-    <div class="store-grid">
-        @foreach (var card in cards)
+<div class="min-h-screen bg-gray-50 p-6">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8 text-center">TCG Store</h1>
+        
+        @if (cards == null || products == null)
         {
-            <div class="store-item">
-                <img src="@card.ImageUrl" alt="@card.Name" />
-                <h4>@card.Name</h4>
-                <p>@card.Type - @card.Rarity</p>
-                <strong>£@card.Price</strong>
-                <button @onclick="() => AddToCart(card.Name)">Add to Cart</button>
+            <div class="flex items-center justify-center py-20">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
+                    <p class="text-xl text-gray-700">Loading items...</p>
+                </div>
             </div>
         }
-
-        @foreach (var product in products)
+        else
         {
-            <div class="store-item">
-                <img src="@product.ImageUrl" alt="@product.Name" />
-                <h4>@product.Name</h4>
-                <p>@product.Description</p>
-                <strong>£@product.Price</strong>
-                <button @onclick="() => AddToCart(product.Name)">Add to Cart</button>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                @foreach (var card in cards)
+                {
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <img src="@card.ImageUrl" alt="@card.Name" class="w-full h-48 object-cover bg-gray-200" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">@card.Name</h3>
+                            <p class="text-sm text-gray-600 mb-2">@card.Type - @card.Rarity</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-green-600">£@card.Price</span>
+                                <button @onclick="() => AddToCart(card.Name)" 
+                                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors duration-200">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var product in products)
+                {
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <img src="@product.ImageUrl" alt="@product.Name" class="w-full h-48 object-cover bg-gray-200" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">@product.Name</h3>
+                            <p class="text-sm text-gray-600 mb-3">@product.Description</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-green-600">£@product.Price</span>
+                                <button @onclick="() => AddToCart(product.Name)" 
+                                        class="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded transition-colors duration-200">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         }
     </div>
-}
+</div>
 
 @code {
     private List<Card>? cards;
@@ -44,8 +65,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        cards = await CardService.GetCardsAsync(); // Using CardService
-        products = await ProductService.GetProductsAsync(); // Using ProductService
+        cards = await CardService.GetCardsAsync();
+        products = await ProductService.GetProductsAsync();
     }
 
     private void AddToCart(string itemName)
