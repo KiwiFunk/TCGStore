@@ -16,5 +16,6 @@ builder.Services.AddScoped(sp => new HttpClient
 //Register services for dependency injection
 builder.Services.AddScoped<CardService>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<FeaturedProductService>();
 
 await builder.Build().RunAsync();

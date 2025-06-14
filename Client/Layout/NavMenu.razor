@@ -1,40 +1,208 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">TCG Store</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿<header class="bg-white shadow-lg">
+    <!-- Top Navigation Bar -->
+    <div class="bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="bg-purple-600 text-white p-2 rounded-lg">
+                            <span class="text-xl font-bold">🎲</span>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-900">TCG Emporium</span>
+                    </a>
+                </div>
 
-<div class="@NavMenuCssClass nav-scrollable">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-lg mx-8">
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Search for cards, games, accessories..." 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center space-x-6">
+                    <!-- Currency/Region -->
+                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="UK" class="w-5 h-3">
+                        <span>GBP £</span>
+                    </div>
+
+                    <!-- Login -->
+                    <a href="/login" class="flex items-center space-x-1 text-gray-700 hover:text-purple-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        <span class="hidden sm:block">Login</span>
+                    </a>
+
+                    <!-- Wishlist -->
+                    <a href="/wishlist" class="flex items-center space-x-1 text-gray-700 hover:text-purple-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span class="hidden sm:block">Wishlist</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="/cart" class="flex items-center space-x-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5.4M19 13v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6m14 0H7"></path>
+                        </svg>
+                        <span>Cart (0)</span>
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button @onclick="ToggleNavMenu" class="sm:hidden p-2 rounded-md text-gray-700 hover:text-purple-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/store">
-                <span class="bi bi-shop" aria-hidden="true"></span> Store
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/about">
-                <span class="bi bi-info-circle" aria-hidden="true"></span> About
-            </NavLink>
+    </div>
+
+    <!-- Category Navigation -->
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-8 h-14">
+                <!-- Category Dropdowns -->
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 text-gray-700 hover:text-purple-600 font-medium py-2">
+                        <span>Magic: The Gathering</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div class="p-4 space-y-2">
+                            <a href="/magic/singles" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Single Cards</a>
+                            <a href="/magic/booster-packs" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Booster Packs</a>
+                            <a href="/magic/commander" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Commander Decks</a>
+                            <a href="/magic/accessories" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Accessories</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 text-gray-700 hover:text-purple-600 font-medium py-2">
+                        <span>Pokémon</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div class="p-4 space-y-2">
+                            <a href="/pokemon/singles" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Single Cards</a>
+                            <a href="/pokemon/booster-packs" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Booster Packs</a>
+                            <a href="/pokemon/theme-decks" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Theme Decks</a>
+                            <a href="/pokemon/japanese" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Japanese Cards</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 text-gray-700 hover:text-purple-600 font-medium py-2">
+                        <span>Yu-Gi-Oh!</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div class="p-4 space-y-2">
+                            <a href="/yugioh/singles" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Single Cards</a>
+                            <a href="/yugioh/booster-packs" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Booster Packs</a>
+                            <a href="/yugioh/structure-decks" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Structure Decks</a>
+                            <a href="/yugioh/tournament-legal" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded">Tournament Legal</a>
+                        </div>
+                    </div>
+                </div>
+
+                <NavLink href="/board-games" class="text-gray-700 hover:text-purple-600 font-medium py-2">
+                    Board Games
+                </NavLink>
+
+                <NavLink href="/accessories" class="text-gray-700 hover:text-purple-600 font-medium py-2">
+                    Accessories
+                </NavLink>
+
+                <NavLink href="/sale" class="text-red-600 hover:text-red-700 font-bold py-2">
+                    SALE
+                </NavLink>
+            </div>
         </div>
     </nav>
-</div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="@(collapseNavMenu ? "hidden" : "block") sm:hidden bg-white border-b border-gray-200">
+        <div class="px-4 py-4 space-y-2">
+            <NavLink href="/" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Home
+            </NavLink>
+            <NavLink href="/store" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Store
+            </NavLink>
+            <NavLink href="/magic" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Magic: The Gathering
+            </NavLink>
+            <NavLink href="/pokemon" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Pokémon
+            </NavLink>
+            <NavLink href="/yugioh" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Yu-Gi-Oh!
+            </NavLink>
+            <NavLink href="/board-games" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-md">
+                Board Games
+            </NavLink>
+        </div>
+    </div>
+
+    <!-- Alert Banner (Conditional) -->
+    @if (showAlert && !string.IsNullOrEmpty(alertMessage))
+    {
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        <p class="text-sm text-yellow-800">
+                            @alertMessage
+                        </p>
+                    </div>
+                    <button @onclick="DismissAlert" class="text-yellow-800 hover:text-yellow-900">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</header>
 
 @code {
     private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private bool showAlert = true;
+    private string alertMessage = "Due to several large releases, there is now a 3-5 day delay with shipping in-stock orders";
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
-}
 
+    private void DismissAlert()
+    {
+        showAlert = false;
+    }
+}

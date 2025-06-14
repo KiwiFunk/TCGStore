@@ -1,22 +1,79 @@
 ﻿@page "/"
+@using Client.Services
 
-<PageTitle>Home</PageTitle>
+<PageTitle>TCG Emporium - Home</PageTitle>
 
-<h1>Welcome to TCG Store</h1>
+<!-- Hero Carousel -->
+<HeroCarousel />
 
-<p>Your one-stop shop for trading card games and collectibles!</p>
+<div class="py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg text-white p-8 mb-12">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                Welcome to TCG Emporium
+            </h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Your one-stop shop for trading card games and collectibles! 
+                Discover rare cards, deck accessories, and everything you need for your next adventure.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/store" 
+                   class="bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 text-lg">
+                    🛍️ Shop Now
+                </a>
+                <a href="/about" 
+                   class="border-2 border-white text-white hover:bg-white hover:text-purple-600 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 text-lg">
+                    📖 Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Features Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white rounded-lg p-6 shadow-md text-center">
+            <div class="text-4xl mb-4">🃏</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Authentic Cards</h3>
+            <p class="text-gray-600">Genuine trading cards from trusted suppliers worldwide.</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow-md text-center">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Fast Shipping</h3>
+            <p class="text-gray-600">Quick and secure delivery to your doorstep.</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow-md text-center">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Expert Curation</h3>
+            <p class="text-gray-600">Handpicked items by gaming enthusiasts for enthusiasts.</p>
+        </div>
+    </div>
 
-<div class="home-links">
-    <a href="/store" class="btn btn-primary">Visit the Store</a>
-    <a href="/about" class="btn btn-secondary">Learn More</a>
+    <!-- Featured Categories -->
+    <div class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Featured Categories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="/magic" class="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold group-hover:text-purple-600">Magic: The Gathering</h3>
+                    <p class="text-gray-600 text-sm">Explore the multiverse</p>
+                </div>
+            </a>
+            <a href="/pokemon" class="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="h-48 bg-gradient-to-br from-yellow-400 to-red-500"></div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold group-hover:text-purple-600">Pokémon</h3>
+                    <p class="text-gray-600 text-sm">Gotta catch 'em all</p>
+                </div>
+            </a>
+            <a href="/yugioh" class="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500"></div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold group-hover:text-purple-600">Yu-Gi-Oh!</h3>
+                    <p class="text-gray-600 text-sm">Time to duel</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
-
-<style>
-    .home-links {
-        margin-top: 20px;
-    }
-
-    .home-links a {
-        margin-right: 10px;
-    }
-</style>
