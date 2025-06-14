@@ -5,7 +5,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     line-height: 1.6;
 }
@@ -72,4 +73,20 @@ html, body {
 
 .loading-progress-text:after {
     content: var(--blazor-load-percentage-text, "Loading");
+}
+
+@keyframes subtleScale {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+.scale-animation {
+    animation: subtleScale 5s ease-out forwards;
+    animation-delay: 700ms;
+    /* Start animation after fade-in completes */
 }
