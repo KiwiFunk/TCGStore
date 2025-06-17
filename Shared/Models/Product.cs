@@ -17,5 +17,8 @@ namespace Shared.Models
         public int StockQuantity { get; set; }                  // Number of items in stock
         public bool IsInStock => StockQuantity > 0;             // Is the product in stock?
 
+        // Misc
+        public string UrlSlug { get; set; } = string.Empty;     // URL slug for specific product page (e.g., "vaultx-sleeves, blue-eyes-white-dragon")
+
     }
 }
