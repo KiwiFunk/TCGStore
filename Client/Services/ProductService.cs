@@ -12,42 +12,34 @@ namespace Client.Services
             _httpClient = httpClient;
         }
 
-        // GET request to fetch the list of ALL products from API
+        // Fetch all products from the API
         public async Task<List<Product>> GetProductsAsync()
         {
             return await _httpClient.GetFromJsonAsync<List<Product>>("api/products") ?? new List<Product>();
         }
 
-        // Get products by category. E.g "Pokemon"
+        // Fetch products by category directly from the server
         public async Task<List<Product>> GetProductsByCategoryAsync(string category)
         {
-            var allProducts = await GetProductsAsync();
-            return allProducts.Where(p => p.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/category/{category}") ?? new List<Product>();
         }
 
-        // Get products by subcategory within a category. E.g "Pokemon" -> "Singles"
+        // Fetch products by subcategory within a category directly from the server
         public async Task<List<Product>> GetProductsBySubcategoryAsync(string category, string subcategory)
         {
-            var allProducts = await GetProductsAsync();
-            return allProducts.Where(p => 
-                p.Category.Equals(category, StringComparison.OrdinalIgnoreCase) && 
-                p.SubCategory.Equals(subcategory, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-        }
-        
-        // Get a single product by ID
-        public async Task<Product?> GetProductByIdAsync(int id)
-        {
-            var allProducts = await GetProductsAsync();
-            return allProducts.FirstOrDefault(p => p.Id == id);
+            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/category/{category}/{subcategory}") ?? new List<Product>();
         }
 
-        // Get a single product by slug
+        // Fetch a single product by ID directly from the server
+        public async Task<Product?> GetProductByIdAsync(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<Product?>($"api/products/{id}");
+        }
+
+        // Fetch a single product by slug (if applicable in API structure)
         public async Task<Product?> GetProductBySlugAsync(string slug)
         {
-            var allProducts = await GetProductsAsync();
-            return allProducts.FirstOrDefault(p => p.UrlSlug.Equals(slug, StringComparison.OrdinalIgnoreCase));
+            return await _httpClient.GetFromJsonAsync<Product?>($"api/products/slug/{slug}");
         }
     }
 }
-
