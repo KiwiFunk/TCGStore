@@ -123,14 +123,14 @@ namespace Server.Controllers
             return product;
         }
         // GET products by Category
-        [HttpGet("category/{category}")]
+        [HttpGet("{category}")]
         public ActionResult<IEnumerable<Product>> GetByCategory(string category)
         {
             var products = Products.Where(p => p.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
             return Ok(products);
         }
         // GET products by Subcategory
-        [HttpGet("category/{category}/{subcategory}")]
+        [HttpGet("{category}/{subcategory}")]
         public ActionResult<IEnumerable<Product>> GetBySubcategory(string category, string subcategory)
         {
             var products = Products.Where(p => 

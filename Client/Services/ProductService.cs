@@ -21,13 +21,13 @@ namespace Client.Services
         // Fetch products by category directly from the server
         public async Task<List<Product>> GetProductsByCategoryAsync(string category)
         {
-            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/category/{category}") ?? new List<Product>();
+            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/{category}") ?? new List<Product>();
         }
 
         // Fetch products by subcategory within a category directly from the server
         public async Task<List<Product>> GetProductsBySubcategoryAsync(string category, string subcategory)
         {
-            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/category/{category}/{subcategory}") ?? new List<Product>();
+            return await _httpClient.GetFromJsonAsync<List<Product>>($"api/products/{category}/{subcategory}") ?? new List<Product>();
         }
 
         // Fetch a single product by ID directly from the server
