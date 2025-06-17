@@ -10,8 +10,8 @@ namespace Shared.Models
 
         // Product Categories and sorting
         public string Category { get; set; } = string.Empty;    // Category (e.g., Pokemon, MTG, Yu-Gi-Oh!, Accessories)
-        public string SubCategory { get; set; } = string.Empty; // Subcategory (e.g., Boosters, Decks, Japanese Cards)
-        public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();  // Additional attributes (e.g., set, blister, ETB, etc.)
+        public string SubCategory { get; set; } = string.Empty; // Subcategory (e.g. Singles, Boosters, Decks, Japanese Cards)
+        public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();  // Additional attributes (e.g. Rarity, Set, Blister, ETB, Promo etc.)
 
         // Stock and availability
         public int StockQuantity { get; set; }                  // Number of items in stock
